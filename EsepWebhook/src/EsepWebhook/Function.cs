@@ -21,10 +21,10 @@ public class Function
         context.Logger.LogInformation($"FunctionHandler received: {input}");
 
         dynamic json = JsonConvert.DeserializeObject<dynamic>(input.ToString());
-        string payload = $"{{'text':'Issue Created: {json.issue.https://s9qkmaaxwf.execute-api.us-east-2.amazonaws.com/default/EsepWebhook}'}}";
+        string payload = $"{{'text':'Issue Created: {json.issue.html_url}'}}";
         
         var client = new HttpClient();
-        var webRequest = new HttpRequestMessage(HttpMethod.Post, Environment.GetEnvironmentVariable("SLACK_URL"))
+        var webRequest = new HttpRequestMessage(HttpMethod.Post, Environment.GetEnvironmentVariable("https://s9qkmaaxwf.execute-api.us-east-2.amazonaws.com/default/EsepWebhook"))
         {
             Content = new StringContent(payload, Encoding.UTF8, "application/json")
         };
