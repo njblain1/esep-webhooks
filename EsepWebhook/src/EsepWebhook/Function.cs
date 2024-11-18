@@ -24,7 +24,7 @@ public class Function
         string payload = $"{{'text':'Issue Created: {json.issue.html_url}'}}";
         
         var client = new HttpClient();
-        var webRequest = new HttpRequestMessage(HttpMethod.Post, Environment.GetEnvironmentVariable("https://s9qkmaaxwf.execute-api.us-east-2.amazonaws.com/default/EsepWebhook"))
+        var webRequest = new HttpRequestMessage(HttpMethod.Post, Environment.GetEnvironmentVariable("https://s9qkmaaxwf.execute-api.us-east-2.amazonaws.com/default"))
         {
             Content = new StringContent(payload, Encoding.UTF8, "application/json")
         };
