@@ -18,25 +18,19 @@ public class Function
     /// <returns></returns>
     public string FunctionHandler(string input, ILambdaContext context)
     {
-        context.Logger.LogInformation($"FunctionHandler received: 
-{input}");
+        context.Logger.LogInformation($"FunctionHandler received: {input}");
 
-        dynamic json = 
-JsonConvert.DeserializeObject<dynamic>(input.ToString());
-        string payload = $"{{'text':'Issue Created: 
-{json.issue.html_url}'}}";
+        dynamic json = JsonConvert.DeserializeObject<dynamic>(input.ToString());
+        string payload = $"{{'text':'Issue Created: {json.issue.html_url}'}}";
         
         var client = new HttpClient();
-        var webRequest = new HttpRequestMessage(HttpMethod.Post, 
-Environment.GetEnvironmentVariable("SLACK_URL"))
+        var webRequest = new HttpRequestMessage(HttpMethod.Post, Environment.GetEnvironmentVariable("SLACK_URL"))
         {
-            Content = new StringContent(payload, Encoding.UTF8, 
-"application/json")
+            Content = new StringContent(payload, Encoding.UTF8, "application/json")
         };
     
         var response = client.Send(webRequest);
-        using var reader = new 
-StreamReader(response.Content.ReadAsStream());
+        using var reader = new StreamReader(response.Content.ReadAsStream());
 
        return reader.ReadToEnd();     
       /// return input.ToUpper();
