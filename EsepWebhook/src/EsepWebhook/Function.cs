@@ -21,7 +21,7 @@ public class Function
         context.Logger.LogInformation($"FunctionHandler received: {input}");
 
         dynamic json = JsonConvert.DeserializeObject<dynamic>(input.ToString());
-        string payload = $"{{'text':'Issue Created: {json.issue.html_url}'}}";
+        string payload = $"{{'text':'Issue Created: {json.issue.https://s9qkmaaxwf.execute-api.us-east-2.amazonaws.com/default/EsepWebhook}'}}";
         
         var client = new HttpClient();
         var webRequest = new HttpRequestMessage(HttpMethod.Post, Environment.GetEnvironmentVariable("SLACK_URL"))
